@@ -53,6 +53,13 @@ def get_product_info_of(ids):
                 # Doing my best to extract out 'wxyz' from 'Rs. w,xyz'
                 product_info['Price'] = int(
                     product_price.split(' ')[-1].replace(',', ''))
+            
+            for img in soup.find_all('img'):
+                try:
+                    if product_info['Name'] in img['alt']:
+                        product_info['Img'] = img['src']
+                except KeyError:
+                    pass
 
             # Just adding some extra info.
             product_info['Url'] = product_url
@@ -132,7 +139,7 @@ def notify_price_drop(drop_list):
 if __name__ == '__main__':
     # Example usage. This can be wrapped in an infinite loop with time delay.
     # Or this scripted can be called from cron job.
-    tracking_list = ['0834893001', '0803625008']
+    tracking_list = ['0669091001', '0772570002', '0497640026']
     products = get_product_info_of(tracking_list)
     write_to_file(products)
     drop_list = check_for_price_drop(products)
