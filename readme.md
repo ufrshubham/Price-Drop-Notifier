@@ -20,6 +20,6 @@
 
 ---
 
-- Disclaimer : I have created this script for educational purpose. Use it script at you own risk.
+- Disclaimer : I have created this script for educational purpose. Use it at you own risk.
 
 ---
